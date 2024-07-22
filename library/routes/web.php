@@ -16,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
-    return view('client.book.index');
+
+Route::group(['prefix' => 'library', 'as' => 'library.'], function () {
+
+    Route::view('/' , 'web.client.book.index');
+    Route::view('/detail' , 'web.client.book.detail');
+    Route::view('/read' , 'web.client.book.read');
+    
 });
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+
+    Route::view('/' , 'web.admin.index');
+    Route::view('/book' , 'web.admin.book.index');
+    
+});
+
